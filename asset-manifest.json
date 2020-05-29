@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.ddc21023.chunk.css",
-    "main.js": "/static/js/main.a647bc65.chunk.js",
-    "main.js.map": "/static/js/main.a647bc65.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.14d5cd0a.js",
-    "runtime-main.js.map": "/static/js/runtime-main.14d5cd0a.js.map",
-    "static/css/2.674f0730.chunk.css": "/static/css/2.674f0730.chunk.css",
-    "static/js/2.d3d5ba21.chunk.js": "/static/js/2.d3d5ba21.chunk.js",
-    "static/js/2.d3d5ba21.chunk.js.map": "/static/js/2.d3d5ba21.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.9834bc8aca7db266d42447fc0b450aac.js": "/precache-manifest.9834bc8aca7db266d42447fc0b450aac.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.674f0730.chunk.css.map": "/static/css/2.674f0730.chunk.css.map",
-    "static/css/main.ddc21023.chunk.css.map": "/static/css/main.ddc21023.chunk.css.map",
-    "static/js/2.d3d5ba21.chunk.js.LICENSE": "/static/js/2.d3d5ba21.chunk.js.LICENSE",
-    "static/media/Logo.png": "/static/media/Logo.919babb1.png",
-    "static/media/header.scss": "/static/media/background-image.f500af7e.jpg",
-    "static/media/diesel-truck-1.jpeg": "/static/media/diesel-truck-1.2d992818.jpeg",
-    "static/media/diesel-truck-2.jpeg": "/static/media/diesel-truck-2.5ff133d6.jpeg",
-    "static/media/diesel-truck-3.jpeg": "/static/media/diesel-truck-3.6ce88690.jpeg"
+    "main.css": "/rjtgroup-re-design/static/css/main.e13f6089.chunk.css",
+    "main.js": "/rjtgroup-re-design/static/js/main.304be88d.chunk.js",
+    "main.js.map": "/rjtgroup-re-design/static/js/main.304be88d.chunk.js.map",
+    "runtime-main.js": "/rjtgroup-re-design/static/js/runtime-main.996a4168.js",
+    "runtime-main.js.map": "/rjtgroup-re-design/static/js/runtime-main.996a4168.js.map",
+    "static/css/2.674f0730.chunk.css": "/rjtgroup-re-design/static/css/2.674f0730.chunk.css",
+    "static/js/2.fa53cbe9.chunk.js": "/rjtgroup-re-design/static/js/2.fa53cbe9.chunk.js",
+    "static/js/2.fa53cbe9.chunk.js.map": "/rjtgroup-re-design/static/js/2.fa53cbe9.chunk.js.map",
+    "index.html": "/rjtgroup-re-design/index.html",
+    "precache-manifest.94903a9fdc89882e59b18a1a6a9c3d4a.js": "/rjtgroup-re-design/precache-manifest.94903a9fdc89882e59b18a1a6a9c3d4a.js",
+    "service-worker.js": "/rjtgroup-re-design/service-worker.js",
+    "static/css/2.674f0730.chunk.css.map": "/rjtgroup-re-design/static/css/2.674f0730.chunk.css.map",
+    "static/css/main.e13f6089.chunk.css.map": "/rjtgroup-re-design/static/css/main.e13f6089.chunk.css.map",
+    "static/js/2.fa53cbe9.chunk.js.LICENSE": "/rjtgroup-re-design/static/js/2.fa53cbe9.chunk.js.LICENSE",
+    "static/media/Logo.png": "/rjtgroup-re-design/static/media/Logo.919babb1.png",
+    "static/media/header.scss": "/rjtgroup-re-design/static/media/background-image.f500af7e.jpg",
+    "static/media/diesel-truck-1.jpeg": "/rjtgroup-re-design/static/media/diesel-truck-1.2d992818.jpeg",
+    "static/media/diesel-truck-2.jpeg": "/rjtgroup-re-design/static/media/diesel-truck-2.5ff133d6.jpeg",
+    "static/media/diesel-truck-3.jpeg": "/rjtgroup-re-design/static/media/diesel-truck-3.6ce88690.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.14d5cd0a.js",
+    "static/js/runtime-main.996a4168.js",
     "static/css/2.674f0730.chunk.css",
-    "static/js/2.d3d5ba21.chunk.js",
-    "static/css/main.ddc21023.chunk.css",
-    "static/js/main.a647bc65.chunk.js"
+    "static/js/2.fa53cbe9.chunk.js",
+    "static/css/main.e13f6089.chunk.css",
+    "static/js/main.304be88d.chunk.js"
   ]
 }
