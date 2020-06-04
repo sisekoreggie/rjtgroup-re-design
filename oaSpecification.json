@@ -1,0 +1,529 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Mobiz Smart - Backend API",
+    "description": "This is a live API documentation for Mobiz Smart's backend.",
+    "contact": {
+      "name": "Mobiz",
+      "url": "https://mobiz.co.za",
+      "email": "mike@mobiz.co.za"
+    },
+    "version": "0.0.1"
+  },
+
+  "servers": [
+    {
+      "url": "INSERTED_DYNAMICALLY"
+    }
+  ],
+
+  "paths": {
+    "/user-registrations": {
+      "post": {
+        "summary": "Registers a user. This will create user on the system if doesn't already exist, in the process creating a clientId.",
+        "tags": ["User registrations"],
+
+        "requestBody": {
+          "description": "*type* must be 'userRegistrations'",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/contacts-index": {
+      "get": {
+        "summary": "Lists all contacts belonging to a client",
+        "tags": ["Contacts"],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "Client id of contacts to be queried",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "page[limit]",
+            "in": "query",
+            "description": "Number of records to return (between 1 and 100 inclusive)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]?$|^100$"
+            }
+          },
+          {
+            "name": "page[from]",
+            "in": "query",
+            "description": "Page you're navigating from",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]*$"
+            }
+          },
+          {
+            "name": "page[to]",
+            "in": "query",
+            "description": "Page you're navigating to (defaults to 1) to open first page",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]*$"
+            }
+          },
+          {
+            "name": "page[ts]",
+            "in": "query",
+            "description": "Timestamp of 1st record on the from page, to allow offseting of values",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d+(\\.\\d+)?$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactsResponse"
+                }
+              }
+            }
+          },
+
+          "500": {
+            "description": "Internal server error. Ensure 'clientId' is valid."
+          }
+        }
+      }
+    },
+
+    "/contacts-create": {
+      "post": {
+        "summary": "Creates a contact belonging to a client",
+        "tags": ["Contacts"],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "Client id of contacts to be created",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+
+        "requestBody": {
+          "description": "*type* must be 'contacts'",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateContactRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactResponse"
+                }
+              }
+            }
+          },
+
+          "422": {
+            "description": "Unprocessable Entity. Validation has failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorsResponse"
+                }
+              }
+            }
+          },
+
+          "500": {
+            "description": "Internal server error. Ensure 'clientId' is valid."
+          }
+        }
+      }
+    },
+
+    "/contacts-update": {
+      "patch": {
+        "summary": "Updates a contact belonging to a client",
+        "tags": ["Contacts"],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "Client id of contacts to be created",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+
+        "requestBody": {
+          "description": "*type* must be 'contacts'",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContactRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactResponse"
+                }
+              }
+            }
+          },
+
+          "422": {
+            "description": "Unprocessable Entity. Validation has failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorsResponse"
+                }
+              }
+            }
+          },
+
+          "500": {
+            "description": "Internal server error. Ensure 'clientId' is valid."
+          }
+        }
+      }
+    },
+
+    "/contacts-delete": {
+      "delete": {
+        "summary": "Deletes a contact belonging to a client",
+        "tags": ["Contacts"],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "description": "Client id of contacts to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of contacts to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+
+          "404": {
+            "description": "Not Found. Ensure contact id exists"
+          },
+
+          "500": {
+            "description": "Internal server error. Ensure 'clientId' is valid."
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "RegisterUserRequest": {
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["userRegistrations"]
+              },
+              "id": { "type": "string", "format": "uuid" }
+            },
+            "required": ["type", "id"]
+          }
+        },
+        "required": ["data"]
+      },
+
+      "UserResponse": {
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["users"] },
+              "id": { "type": "string", "format": "uuid" },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "clientId": { "type": "string", "format": "uuid" },
+                  "createdAt": { "type": "number" },
+                  "updatedAt": { "type": "number" }
+                },
+                "required": ["clientId", "createdAt", "updatedAt"]
+              }
+            },
+            "required": ["type", "id", "attributes"]
+          }
+        },
+        "required": ["data"]
+      },
+
+      "CreateContactRequest": {
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["contacts"]
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "firstName": { "type": "string" },
+                  "lastName": { "type": "string" },
+                  "phone": {
+                    "type": "string",
+                    "pattern": "^\\+[1-9]\\d{1,14}$"
+                  }
+                },
+                "required": ["phone"]
+              }
+            },
+            "required": ["type"]
+          }
+        },
+        "required": ["data"]
+      },
+
+      "UpdateContactRequest": {
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "format": "uuid" },
+              "type": {
+                "type": "string",
+                "enum": ["contacts"]
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "firstName": { "type": "string" },
+                  "lastName": { "type": "string" },
+                  "phone": {
+                    "type": "string",
+                    "pattern": "^\\+[1-9]\\d{1,14}$"
+                  }
+                },
+                "required": ["phone"]
+              }
+            },
+            "required": ["type", "id"]
+          }
+        },
+        "required": ["data"]
+      },
+
+      "ContactResponse": {
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["contacts"] },
+              "id": { "type": "string", "format": "uuid" },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "firstName": { "type": "string" },
+                  "lastName": { "type": "string" },
+                  "phone": {
+                    "type": "string",
+                    "pattern": "^\\+[1-9]\\d{1,14}$"
+                  },
+                  "createdAt": { "type": "number" },
+                  "updatedAt": { "type": "number" }
+                },
+                "required": ["phone"]
+              }
+            },
+            "required": ["type", "id"]
+          }
+        },
+        "required": ["data"]
+      },
+
+      "ContactsResponse": {
+        "properties": {
+          "meta": {
+            "properties": {
+              "totalRecords": { "type": "integer" },
+              "currentPage": { "type": "integer" }
+            },
+            "required": ["totalRecords", "currentPage"]
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string", "enum": ["contacts"] },
+                "id": { "type": "string", "format": "uuid" },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "firstName": { "type": "string" },
+                    "lastName": { "type": "string" },
+                    "phone": {
+                      "type": "string",
+                      "pattern": "^\\+[1-9]\\d{1,14}$"
+                    },
+                    "createdAt": { "type": "number" },
+                    "updatedAt": { "type": "number" }
+                  },
+                  "required": ["phone"]
+                }
+              },
+              "required": ["type", "id"]
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/PaginationLinks"
+          }
+        },
+        "required": ["meta", "data", "links"]
+      },
+
+      "PaginationLinks": {
+        "properties": {
+          "previousPages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "page": { "type": "integer" },
+                "url": { "type": "string", "format": "url" }
+              },
+              "required": ["page", "url"]
+            }
+          },
+          "currentPage": {
+            "type": "object",
+            "properties": {
+              "page": { "type": "integer" },
+              "url": { "type": "string", "format": "url" }
+            },
+            "required": ["page", "url"]
+          },
+          "nextPages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "page": { "type": "integer" },
+                "url": { "type": "string", "format": "url" }
+              },
+              "required": ["page", "url"]
+            }
+          }
+        },
+        "required": ["previousPages", "currentPage", "nextPages"]
+      },
+
+      "ErrorsResponse": {
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string" },
+                "source": {
+                  "type": "object",
+                  "properties": { "pointer": { "type": "string" } },
+                  "required": ["pointer"]
+                },
+                "title": { "type": "string" },
+                "detail": { "type": "string" }
+              }
+            }
+          }
+        },
+        "required": ["errors"]
+      }
+    }
+  }
+}
