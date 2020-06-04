@@ -296,6 +296,20 @@
           }
         }
       }
+    },
+    
+    "/docs": {
+      "get": {
+        "summary": "Get swagger documentation UI",
+        "tags": [
+          "Documentation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
 
